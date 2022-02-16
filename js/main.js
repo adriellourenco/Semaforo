@@ -32,6 +32,10 @@ const estaVermelho = () => {
     return semaforo.src.includes('vermelho')
 }
 
+const estaDesligado = () => {
+    return semaforo.src.includes('desligado')
+}
+
 const trocarCor = () => {
     if (estaVerde()) {
         tornarSinalAmarelo()
@@ -39,10 +43,13 @@ const trocarCor = () => {
         tornarSinalVermelho()
     } else if (estaVermelho()) {
         tornarSinalVerde()
+    } else if(estaDesligado){
+        tornarSinalVerde()
     }
 }
 
 const tornarAutomatico = () => {
+    clearInterval(idPiscar)
     idPiscar = setInterval(trocarCor, 1000)
 }
 
